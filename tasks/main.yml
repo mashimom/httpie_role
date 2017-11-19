@@ -1,0 +1,25 @@
+---
+# tasks file for httpie
+- name: install easy_install
+  apt:
+    name: "{{ item }}"
+    install_recommends: yes
+    update_cache: yes
+    cache_valid_time: 3600
+    autoclean: yes
+    autoremove: yes
+  with_items:
+    - build-essential
+    - python-setuptools
+    - python-dev
+  become: yes
+
+- name: install pip
+  easy_install:
+    name: pip
+  become: yes
+
+- name: install httpie
+  pip:
+    name: httpie
+  become: yes
